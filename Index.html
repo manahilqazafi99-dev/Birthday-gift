@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday 🎂</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3, #8e54e9);
+      color: white;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 500px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card {
+      padding: 45px 25px;
+      border-radius: 25px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .cake {
+      font-size: 70px;
+      animation: bounce 1.5s infinite;
+    }
+
+    h1 {
+      margin: 15px 0;
+      font-size: clamp(2.2rem, 10vw, 4rem);
+      text-shadow: 0 0 15px rgba(255,255,255,0.8);
+    }
+
+    .name {
+      color: #ffe66d;
+    }
+
+    p {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      margin: 15px 0 25px;
+    }
+
+    button {
+      border: none;
+      padding: 14px 25px;
+      border-radius: 50px;
+      background: #fff;
+      color: #e84393;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+
+    button:hover {
+      transform: scale(1.08);
+      background: #ffe66d;
+      color: #333;
+    }
+
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      top: -20px;
+      z-index: 1;
+      pointer-events: none;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0) rotate(0);
+      }
+      50% {
+        transform: translateY(-12px) rotate(5deg);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 35px 18px;
+      }
+
+      .cake {
+        font-size: 55px;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+
+      button {
+        padding: 13px 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="card">
+      <div class="cake">🎂</div>
+
+      <h1>
+        Happy Birthday<br>
+        <span class="name">Dear Friend! 🎉</span>
+      </h1>
+
+      <p>
+        Wishing you a wonderful birthday filled with
+        happiness, laughter, love, and unforgettable moments! 💖
+      </p>
+
+      <button onclick="celebrate()">
+        🎊 Celebrate Again
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const colors = [
+      "#ff4757",
+      "#ffa502",
+      "#ffdd59",
+      "#2ed573",
+      "#1e90ff",
+      "#a55eea",
+      "#ff6b81",
+      "#ffffff"
+    ];
+
+    function createConfetti() {
+      const confetti = document.createElement("div");
+
+      confetti.classList.add("confetti");
+
+      confetti.style.left = Math.random() * 100 + "vw";
+      confetti.style.backgroundColor =
+        colors[Math.floor(Math.random() * colors.length)];
+
+      confetti.style.width = (Math.random() * 8 + 5) + "px";
+      confetti.style.height = (Math.random() * 12 + 6) + "px";
+
+      confetti.style.borderRadius =
+        Math.random() > 0.5 ? "50%" : "2px";
+
+      const duration = Math.random() * 3 + 3;
+      confetti.style.animationDuration = duration + "s";
+
+      document.body.appendChild(confetti);
+
+      setTimeout(() => {
+        confetti.remove();
+      }, duration * 1000);
+    }
+
+    function celebrate() {
+      // Big burst
+      for (let i = 0; i < 120; i++) {
+        setTimeout(createConfetti, i * 10);
+      }
+    }
+
+    // Start celebration automatically
+    celebrate();
+
+    // Keep confetti falling
+    setInterval(createConfetti, 120);
+  </script>
+
+</body>
+</html>
